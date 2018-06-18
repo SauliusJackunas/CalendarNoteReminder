@@ -1,12 +1,12 @@
-package lt.baltic.talents.superhero.klounada.services;
+package lt.baltic.talents.projects.CalendarNoteReminder.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lt.baltic.talents.superhero.klounada.daos.UserDao;
-import lt.baltic.talents.superhero.klounada.models.User;
+import lt.baltic.talents.projects.CalendarNoteReminder.daos.UserDao;
+import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 
 @Service
 public class UserServiceImpl implements UserService {

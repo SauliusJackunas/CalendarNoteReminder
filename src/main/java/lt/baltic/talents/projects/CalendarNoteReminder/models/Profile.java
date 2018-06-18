@@ -1,4 +1,4 @@
-package lt.baltic.talents.superhero.klounada.models;
+package lt.baltic.talents.projects.CalendarNoteReminder.models;
 
 public class Profile {
 	

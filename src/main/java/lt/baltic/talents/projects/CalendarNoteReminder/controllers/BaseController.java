@@ -1,4 +1,4 @@
-package lt.baltic.talents.superhero.klounada.controllers;
+package lt.baltic.talents.projects.CalendarNoteReminder.controllers;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import lt.baltic.talents.superhero.klounada.helpers.MessageHelper;
+import lt.baltic.talents.projects.CalendarNoteReminder.helpers.MessageHelper;
 
 @Controller
 public class BaseController {

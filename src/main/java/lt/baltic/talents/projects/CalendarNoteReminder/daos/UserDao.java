@@ -1,6 +1,6 @@
-package lt.baltic.talents.superhero.klounada.daos;
+package lt.baltic.talents.projects.CalendarNoteReminder.daos;
 
-import lt.baltic.talents.superhero.klounada.models.User;
+import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 
 public interface UserDao {
 	

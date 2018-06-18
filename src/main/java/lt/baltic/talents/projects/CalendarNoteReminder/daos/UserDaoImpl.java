@@ -1,4 +1,4 @@
-package lt.baltic.talents.superhero.klounada.daos;
+package lt.baltic.talents.projects.CalendarNoteReminder.daos;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import lt.baltic.talents.superhero.klounada.models.User;
+import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 
 @Repository
 public class UserDaoImpl implements UserDao {

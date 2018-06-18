@@ -1,4 +1,4 @@
-package lt.baltic.talents.superhero.klounada.models;
+package lt.baltic.talents.projects.CalendarNoteReminder.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,6 +1,6 @@
-package lt.baltic.talents.superhero.klounada.services;
+package lt.baltic.talents.projects.CalendarNoteReminder.services;
 
-import lt.baltic.talents.superhero.klounada.models.User;
+import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 
 public interface UserService {
 

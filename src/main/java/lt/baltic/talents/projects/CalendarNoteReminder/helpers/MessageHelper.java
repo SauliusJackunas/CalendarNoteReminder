@@ -1,4 +1,4 @@
-package lt.baltic.talents.superhero.klounada.helpers;
+package lt.baltic.talents.projects.CalendarNoteReminder.helpers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
