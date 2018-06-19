@@ -26,16 +26,16 @@ public class BaseController {
 //		return "hello/base";
 //	}
 	
-	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
-			@RequestParam(value = "pwd", required = false) String pwd, Model model) {
-		
-		if(userParam != null) {
-			return "hello/base";
-		}
-			return "login/failure";
-		
-	}
+//	@RequestMapping(value = "/base", method = RequestMethod.GET)
+//	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
+//			@RequestParam(value = "pwd", required = false) String pwd, Model model) {
+//		
+//		if(userParam != null) {
+//			return "hello/base";
+//		}
+//			return "login/failure";
+//		
+//	}
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
@@ -53,7 +53,7 @@ public class BaseController {
 //		return "login/login";
 //	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/base", method = RequestMethod.GET)
 	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
 		LocalDateTime date = LocalDateTime.now();
 		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
@@ -69,8 +69,9 @@ public class BaseController {
 		return "hello/base";
 	}
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start() {
-		return "login/login";
+		return "/login/login";
 	}
 	
 
