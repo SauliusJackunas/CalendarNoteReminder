@@ -27,8 +27,14 @@ public class BaseController {
 //	}
 	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String loggedIn(Model model) {
-		return "hello/base";
+	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
+			@RequestParam(value = "pwd", required = false) String pwd, Model model) {
+		
+		if(userParam != null) {
+			return "hello/base";
+		}
+			return "login/failure";
+		
 	}
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
