@@ -21,11 +21,9 @@ public class UserDaoImpl implements UserDao {
 	public boolean create(User user) {
 		@SuppressWarnings("unchecked")
 		Long id = (Long) sessionFactory.getCurrentSession().save(user);
-		
 		if (id != null) {
 			return true;
 		}
-		
 		return false;
 	}
 
