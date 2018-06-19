@@ -97,4 +97,5 @@ public class User implements Serializable {
 		return "User [reminder=" + reminder + ", note=" + note + ", id=" + id + ", login=" + login + ", pwd="
 				+ Arrays.toString(pwd) + "]";
 	}
+
 }

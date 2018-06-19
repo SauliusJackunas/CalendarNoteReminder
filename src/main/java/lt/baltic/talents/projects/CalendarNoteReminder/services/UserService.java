@@ -7,5 +7,5 @@ public interface UserService {
 	boolean login(User user);
 	
 	boolean create(User user);
-
+	
 }
