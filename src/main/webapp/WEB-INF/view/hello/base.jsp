@@ -8,7 +8,7 @@
 
 <html>
 <head>
-	<link href="<c:url value="/resources/css/Picker.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/css/picker.css" />" rel="stylesheet">
 	<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 	
     <title><spring:message code="message.title" /></title>
@@ -68,7 +68,7 @@
 	</article>
 	
 	<script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/Picker.js"/>"></script>
+	<script src="<c:url value="/resources/js/picker.js"/>"></script>
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>

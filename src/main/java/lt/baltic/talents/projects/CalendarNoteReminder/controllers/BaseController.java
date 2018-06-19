@@ -26,6 +26,7 @@ public class BaseController {
 		return "hello/base";
 	}
 	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
 		LocalDateTime date = LocalDateTime.now();
@@ -39,7 +40,7 @@ public class BaseController {
 		
 		System.out.println(helper.getMessage("message.hello"));
 		
-		return "hello/base";
+		//return "hello/base";
 	}
 
 }
