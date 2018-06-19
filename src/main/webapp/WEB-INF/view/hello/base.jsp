@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <html>
@@ -12,6 +14,7 @@
     <title><spring:message code="message.title" /></title>
 </head>
 <body>
+
 	<c:if test="${not empty user}">
 		<article>
 			<h1><spring:message code="message.welcome" /></h1>

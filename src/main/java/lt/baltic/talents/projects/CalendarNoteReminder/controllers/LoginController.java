@@ -12,12 +12,17 @@ import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 import lt.baltic.talents.projects.CalendarNoteReminder.services.UserService;
 
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 	
 	@Autowired
     private UserService userService;
 	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(Model model) {
+		userService.create(new User());
+		
+		return "redirect:/";
+	}
 //	@RequestMapping(value = "testCreate", method = RequestMethod.GET)
 //	public String login(Model model) {
 //		userService.create(new User("OOOOO", "xzxzcxzcxzc".toCharArray()));
@@ -25,13 +30,13 @@ public class LoginController {
 //		return "login/failure";
 //	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, 
 			@RequestParam(value = "user", required = false) String userParam,
 			@RequestParam(value = "pwd", required = false) String pwd, RedirectAttributes redirectAttributes) {
 		
 		if (userParam == null || pwd == null) { 
-			return "login/failure"; 
+			return "login/login"; 
 		}
 		
 		User user = new User(userParam, pwd.toCharArray());
@@ -45,5 +50,5 @@ public class LoginController {
 		
 		return "login/failure";
 	}
-
+	
 }
