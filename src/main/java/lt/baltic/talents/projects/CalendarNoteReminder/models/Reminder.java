@@ -2,17 +2,38 @@ package lt.baltic.talents.projects.CalendarNoteReminder.models;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TBL_REMINDER")
 public class Reminder {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "REMINDER_ID")
+	private Long id;
 
+	@Column(name="REMINDER_NOTE")
 	String note;
-	LocalDateTime priminimoLaikas;
 	
+	@Column(name="REMINDER_DATE")
+	LocalDateTime reminderDateTime;
 	
-	public Reminder(String note, LocalDateTime priminimoLaikas) {
+	@ManyToOne
+    @JoinColumn(name="login", nullable=false)
+	User user;
+	
+	public Reminder(String note, LocalDateTime reminderDateTime) {
 		super();
 		this.note = note;
-		this.priminimoLaikas = priminimoLaikas;
+		this.reminderDateTime = reminderDateTime;
 	}
 
 
@@ -26,19 +47,19 @@ public class Reminder {
 	}
 
 
-	public LocalDateTime getPriminimoLaikas() {
-		return priminimoLaikas;
+	public LocalDateTime getReminderDateTime() {
+		return reminderDateTime;
 	}
 
 
-	public void setPriminimoLaikas(LocalDateTime priminimoLaikas) {
-		this.priminimoLaikas = priminimoLaikas;
+	public void setReminderDateTime(LocalDateTime reminderDateTime) {
+		this.reminderDateTime = reminderDateTime;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Reminder [note=" + note + ", priminimoLaikas=" + priminimoLaikas + "]";
+		return "Reminder [note=" + note + ", priminimoLaikas=" + reminderDateTime + "]";
 	}
 	
 	

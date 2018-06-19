@@ -40,7 +40,7 @@ public class BaseController {
 		
 		System.out.println(helper.getMessage("message.hello"));
 		
-		//return "hello/base";
+		return "hello/base";
 	}
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -27,13 +28,9 @@ public class User implements Serializable {
 	@Column(name = "USER_PWD")
 	private char[] pwd;
 	
-	//@Column(name = "USER_REMINDER")
-	@Transient
+	@Column(name = "USER_REMINDER")
+	@OneToMany(mappedBy="user")
 	private List<Reminder> reminder;
-	
-	//@Column(name = "USER_NOTE")
-	@Transient
-	private String note;
 	
 	public User() {}
 
@@ -43,9 +40,8 @@ public class User implements Serializable {
 		
 	}
 	
-	public User (String login, String note, List<Reminder> reminder) {
+	public User (String login, List<Reminder> reminder) {
 		this.login = login;
-		this.note = note;
 		this.reminder = reminder;
 	}
 
@@ -55,14 +51,6 @@ public class User implements Serializable {
 
 	public void setReminder(List<Reminder> reminder) {
 		this.reminder = reminder;
-	}
-
-	public String getNote() {
-		return note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
 	}
 
 	public Long getId() {
@@ -92,7 +80,7 @@ public class User implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "User [reminder=" + reminder + ", note=" + note + ", id=" + id + ", login=" + login + ", pwd="
+		return "User [reminder=" + reminder + ", id=" + id + ", login=" + login + ", pwd="
 				+ Arrays.toString(pwd) + "]";
 	}
 
