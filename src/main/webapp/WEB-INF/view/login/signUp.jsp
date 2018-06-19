@@ -23,7 +23,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Login</h3>
+							<h3 class="panel-title">Sign UP</h3>
 						</div>
 						<div class="panel-body">
 							<form:form role="form" method="POST" action="login">
@@ -35,8 +35,7 @@
 										<input class="form-control" placeholder="Password" name="pwd" type="password">
 									</div>
 									<!-- Change this to a button or input when using this as a form -->
-									<button type="submit" class="btn btn-success btn-block">Login</button>
-									<p>New Member? <a href="signUp.jsp" class="">Sign up</a></p>
+									<button type="submit" class="btn btn-success btn-block">Sign UP</button>
 								</fieldset>
 							</form:form>
 						</div>
