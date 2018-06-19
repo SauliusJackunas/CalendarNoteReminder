@@ -17,11 +17,11 @@ public class LoginController {
 	@Autowired
     private UserService userService;
 	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model) {
 		userService.create(new User());
 		
-		return "login/failure";
+		return "redirect:/";
 	}
 //	@RequestMapping(value = "testCreate", method = RequestMethod.GET)
 //	public String login(Model model) {
@@ -36,7 +36,7 @@ public class LoginController {
 			@RequestParam(value = "pwd", required = false) String pwd, RedirectAttributes redirectAttributes) {
 		
 		if (userParam == null || pwd == null) { 
-			return "login/failure"; 
+			return "login/login"; 
 		}
 		
 		User user = new User(userParam, pwd.toCharArray());
