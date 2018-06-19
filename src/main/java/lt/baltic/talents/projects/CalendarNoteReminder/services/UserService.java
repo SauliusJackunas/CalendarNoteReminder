@@ -8,4 +8,6 @@ public interface UserService {
 	
 	boolean create(User user);
 	
+	boolean signup(User user);
+	
 }

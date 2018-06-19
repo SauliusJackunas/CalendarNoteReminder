@@ -17,18 +17,17 @@ public class LoginController {
 	@Autowired
     private UserService userService;
 	
-
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public String login(Model model) {
-//		return "redirect:/login";
-//	}
-
 //-----------------------------SIGN_UP_NEW_USER--------------------------------------------------
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public String login(Model model) {
+		return "login/signUp";
+	}
+
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String signUp(Model model) {
 		userService.create(new User());
 		
-		return "login/signUp";
+		return "login/login";
 	}
 	
 //-------------------------------------------------------------------------------------	
@@ -55,7 +54,7 @@ public class LoginController {
 		
 		if (login) {
 			redirectAttributes.addFlashAttribute("user", user);
-			return "redirect:/";
+			return "redirect:/base";
 		}
 		
 		return "login/failure";

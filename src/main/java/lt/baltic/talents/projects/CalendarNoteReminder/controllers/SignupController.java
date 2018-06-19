@@ -19,14 +19,14 @@ public class SignupController {
     private UserService userService;
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String login(Model model) {
+	public String signup(Model model) {
 		userService.create(new User());
 		
 		return "redirect:/signup";
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String login(Model model, 
+	public String signup(Model model, 
 			@RequestParam(value = "user", required = true) String userParam,
 			@RequestParam(value = "pwd", required = true) String pwd, RedirectAttributes redirectAttributes) {
 		
@@ -36,9 +36,9 @@ public class SignupController {
 		
 		User user = new User(userParam, pwd.toCharArray());
 		
-		boolean login = userService.login(user);
+		boolean signup = userService.signup(user);
 		
-		if (login) {
+		if (signup) {
 			redirectAttributes.addFlashAttribute("user", user);
 			return "redirect:/";
 		}
