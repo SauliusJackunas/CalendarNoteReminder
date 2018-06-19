@@ -19,6 +19,13 @@ public class BaseController {
 	@Autowired
 	private MessageHelper helper;
 
+	@RequestMapping(value = "/base", method = RequestMethod.POST)
+	public String setReminder(@RequestParam(value = "reminderDate", required = false) String reminderDate, Model model) {
+		
+		System.out.println(reminderDate);
+		return "hello/base";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
 		LocalDateTime date = LocalDateTime.now();
