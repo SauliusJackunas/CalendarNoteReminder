@@ -18,17 +18,17 @@ public class LoginController {
     private UserService userService;
 	
 //-----------------------------SIGN_UP_NEW_USER--------------------------------------------------
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String login(Model model) {
-		return "login/signUp";
-	}
-
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String signUp(Model model) {
-		userService.create(new User());
-		
-		return "login/login";
-	}
+//	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+//	public String login(Model model) {
+//		return "login/signup";
+//	}
+//
+//	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+//	public String signup(Model model) {
+//		userService.create(new User());
+//		
+//		return "login/login";
+//	}
 	
 //-------------------------------------------------------------------------------------	
 //	@RequestMapping(value = "testCreate", method = RequestMethod.GET)

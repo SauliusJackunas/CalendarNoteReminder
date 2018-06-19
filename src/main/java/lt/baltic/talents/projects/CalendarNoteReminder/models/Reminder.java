@@ -27,7 +27,7 @@ public class Reminder {
 	LocalDateTime reminderDateTime;
 	
 	@ManyToOne
-    @JoinColumn(name="login", nullable=false)
+    @JoinColumn(name="login")
 	User user;
 	
 	public Reminder(String note, LocalDateTime reminderDateTime) {

@@ -26,7 +26,7 @@
 							<h3 class="panel-title">Sign UP</h3>
 						</div>
 						<div class="panel-body">
-							<form:form role="form" method="POST" action="login">
+							<form:form role="form" method="GET" action="signup">
 								<fieldset>
 									<div class="form-group">
 										<input class="form-control" placeholder="Name" name="user" type="text" autofocus>

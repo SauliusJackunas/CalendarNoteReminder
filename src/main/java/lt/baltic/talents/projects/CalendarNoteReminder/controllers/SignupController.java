@@ -20,30 +20,30 @@ public class SignupController {
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(Model model) {
-		userService.create(new User());
+		//userService.create(new User());
 		
-		return "redirect:/signup";
+		return "redirect:/base";
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model, 
-			@RequestParam(value = "user", required = true) String userParam,
-			@RequestParam(value = "pwd", required = true) String pwd, RedirectAttributes redirectAttributes) {
+			@RequestParam(value = "user", required = false) String userParam,
+			@RequestParam(value = "pwd", required = false) String pwd, RedirectAttributes redirectAttributes) {
 		
 		if (userParam == null || pwd == null) { 
-			return "signup/signup"; 
+			return "login/signup"; 
 		}
 		
 		User user = new User(userParam, pwd.toCharArray());
 		
-		boolean signup = userService.signup(user);
+		boolean signup = userService.create(user);
 		
 		if (signup) {
 			redirectAttributes.addFlashAttribute("user", user);
-			return "redirect:/";
+			return "redirect:/base";
 		}
 		
-		return "signup/failure";
+		return "login/failure";
 	}
 	
 }

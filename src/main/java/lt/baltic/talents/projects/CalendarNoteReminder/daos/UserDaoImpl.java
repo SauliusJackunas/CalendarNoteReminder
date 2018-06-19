@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +19,9 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean create(User user) {
 		@SuppressWarnings("unchecked")
+		
 		Long id = (Long) sessionFactory.getCurrentSession().save(user);
+		
 		if (id != null) {
 			return true;
 		}

@@ -36,7 +36,7 @@
 									</div>
 									<!-- Change this to a button or input when using this as a form -->
 									<button type="submit" class="btn btn-success btn-block">Login</button>
-									<p>New Member? <a href="signUp" class="">Sign up</a></p>
+									<p>New Member? <a href="signup" class="">Sign up</a></p>
 								</fieldset>
 							</form:form>
 						</div>
