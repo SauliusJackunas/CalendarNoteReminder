@@ -10,18 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TBL_USERS")
 public class User implements Serializable {
-	
-	
-	@Column(name = "USER_REMINDER")
-	private List<Reminder> reminder;
-	
-	@Column(name = "USER_NOTE")
-	private String note;
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +26,14 @@ public class User implements Serializable {
 	
 	@Column(name = "USER_PWD")
 	private char[] pwd;
+	
+	//@Column(name = "USER_REMINDER")
+	@Transient
+	private List<Reminder> reminder;
+	
+	//@Column(name = "USER_NOTE")
+	@Transient
+	private String note;
 	
 	public User() {}
 
@@ -47,9 +48,6 @@ public class User implements Serializable {
 		this.note = note;
 		this.reminder = reminder;
 	}
-	
-
-
 
 	public List<Reminder> getReminder() {
 		return reminder;
