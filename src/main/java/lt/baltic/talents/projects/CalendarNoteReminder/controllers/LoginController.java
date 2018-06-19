@@ -18,10 +18,10 @@ public class LoginController {
     private UserService userService;
 	
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model) {
-		return "redirect:/login";
-	}
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public String login(Model model) {
+//		return "redirect:/login";
+//	}
 
 //-----------------------------SIGN_UP_NEW_USER--------------------------------------------------
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
