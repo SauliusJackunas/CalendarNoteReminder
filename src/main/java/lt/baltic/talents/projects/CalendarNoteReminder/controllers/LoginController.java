@@ -21,14 +21,16 @@ public class LoginController {
 	public String login(Model model) {
 		userService.create(new User());
 		
-		return "redirect:/";
+		return "redirect:/login";
 	}
+	
+//-------------------------------------------------------------------------------------	
 //	@RequestMapping(value = "testCreate", method = RequestMethod.GET)
 //	public String login(Model model) {
 //		userService.create(new User("OOOOO", "xzxzcxzcxzc".toCharArray()));
-//		
 //		return "login/failure";
 //	}
+//-------------------------------------------------------------------------------------
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, 
