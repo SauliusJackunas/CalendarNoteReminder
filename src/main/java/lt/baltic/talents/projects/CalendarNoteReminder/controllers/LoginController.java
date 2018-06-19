@@ -17,11 +17,18 @@ public class LoginController {
 	@Autowired
     private UserService userService;
 	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model model) {
+		return "redirect:/login";
+	}
+
+//-----------------------------SIGN_UP_NEW_USER--------------------------------------------------
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public String signUp(Model model) {
 		userService.create(new User());
 		
-		return "redirect:/login";
+		return "login/signUp";
 	}
 	
 //-------------------------------------------------------------------------------------	
@@ -32,6 +39,7 @@ public class LoginController {
 //	}
 //-------------------------------------------------------------------------------------
 	
+//-------------------------------LOG_IN_USER-------------------------------------------
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, 
 			@RequestParam(value = "user", required = false) String userParam,
