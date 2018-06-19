@@ -55,7 +55,7 @@ public class LoginController {
 		
 		if (login) {
 			redirectAttributes.addFlashAttribute("user", user);
-			return "redirect:/";
+			return "redirect:/base";
 		}
 		
 		return "login/failure";

@@ -19,27 +19,38 @@ public class BaseController {
 	@Autowired
 	private MessageHelper helper;
 
-	@RequestMapping(value = "/base", method = RequestMethod.POST)
-	public String setReminder(@RequestParam(value = "reminderDate", required = false) String reminderDate, Model model) {
-		
-		System.out.println(reminderDate);
+//	@RequestMapping(value = "/base", method = RequestMethod.POST)
+//	public String setReminder(@RequestParam(value = "reminderDate", required = false) String reminderDate, Model model) {
+//		
+//		System.out.println(reminderDate);
+//		return "hello/base";
+//	}
+	
+	@RequestMapping(value = "/base", method = RequestMethod.GET)
+	public String loggedIn(Model model) {
 		return "hello/base";
 	}
 	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
+//		LocalDateTime date = LocalDateTime.now();
+//		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
+//
+//		String operatingSystem = System.getProperty("os.name");
+//		model.addAttribute("operatingSystem", operatingSystem);
+//		
+//		String javaVersion = System.getProperty("java.version");
+//		model.addAttribute("javaVersion", javaVersion);
+//		
+//		System.out.println(helper.getMessage("message.hello"));
+//		
+//		return "login/login";
+//	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
-		LocalDateTime date = LocalDateTime.now();
-		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
-
-		String operatingSystem = System.getProperty("os.name");
-		model.addAttribute("operatingSystem", operatingSystem);
-		
-		String javaVersion = System.getProperty("java.version");
-		model.addAttribute("javaVersion", javaVersion);
-		
-		System.out.println(helper.getMessage("message.hello"));
-		
-		return "hello/base";
+	public String start() {
+		return "login/login";
 	}
+	
 
 }
