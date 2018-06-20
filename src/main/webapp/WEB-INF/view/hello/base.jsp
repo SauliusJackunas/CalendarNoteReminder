@@ -36,6 +36,12 @@
 			<div class="js-mini-picker-container"></div>
 			<input type="submit" name="submit">
 		</form:form>
+		<form:form method="POST" action="base">
+			<label>Write a message: </label>
+			<input type="text" id="input" name="reminderNote">
+			
+			<input type="submit" name="submit">
+		</form:form>
 	</article>
 	
 	<article>	
