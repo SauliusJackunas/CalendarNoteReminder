@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,42 +31,28 @@ public class User implements Serializable {
 	@Column(name = "USER_PWD")
 	private char[] pwd;
 	
-	
-
-
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
-	private List<Reminder> reminder;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL)
+	private List<Reminder> reminders;
 	
 	public User() {}
 
 	public User(String login, char[] pwd ) {
 		this.login = login;
 		this.pwd = pwd.clone();
-		
+		this.reminders = new ArrayList<>();
 	}
 	
 
 	public User(String login, char[] pwd, List<Reminder> reminder ) {
 		this.login = login;
-		this.pwd = pwd.clone();
-		this.reminder = new ArrayList<Reminder>();
-
-		
-	}
-	
-
-	public User (String login, List<Reminder> reminder) {
-
-		this.login = login;
-		this.reminder = reminder;
 	}
 
-	public List<Reminder> getReminder() {
-		return reminder;
+	public List<Reminder> getReminders() {
+		return reminders;
 	}
 
-	public void setReminder(List<Reminder> reminder) {
-		this.reminder = reminder;
+	public void setReminders(List<Reminder> reminders) {
+		this.reminders = reminders;
 	}
 
 	public Long getId() {
@@ -98,7 +85,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [reminder=" + reminder + ", id=" + id + ", login=" + login + ", pwd="
+		return "User [reminder=" + reminders + ", id=" + id + ", login=" + login + ", pwd="
 				+ Arrays.toString(pwd) + "]";
 	}
 

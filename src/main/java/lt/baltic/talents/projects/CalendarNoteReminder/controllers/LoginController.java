@@ -48,11 +48,9 @@ public class LoginController {
 			return "login/login"; 
 		}
 		
-		User user = new User(userParam, pwd.toCharArray());
+		User user = userService.login(new User(userParam, pwd.toCharArray()));
 		
-		boolean login = userService.login(user);
-		
-		if (login) {
+		if (user != null) {
 			redirectAttributes.addFlashAttribute("user", user);
 			return "redirect:/base";
 		}

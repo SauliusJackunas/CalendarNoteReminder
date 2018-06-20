@@ -32,6 +32,12 @@
 	</c:if>
 
 	<article>
+		<c:forEach items="${user.getReminders()}" var="reminder">
+    		${reminder}<br>
+		</c:forEach>
+	</article>
+	
+	<article>
 		<form:form method="POST" action="base">
 			<label>Pick a reminder date and time: </label>
 			<input type="text" id="input" name="reminderDate">

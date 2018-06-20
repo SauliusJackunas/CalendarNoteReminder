@@ -13,7 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TBL_REMINDERS")
-public class Reminder {
+public class Reminder implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,10 +32,28 @@ public class Reminder {
     @JoinColumn(name="login")
 	User user;
 	
-	public Reminder(String note, LocalDateTime reminderDateTime) {
-		super();
+	public Reminder() {}
+	
+	public Reminder(String note, LocalDateTime reminderDateTime, User user) {
 		this.note = note;
 		this.reminderDateTime = reminderDateTime;
+		this.user = user;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
@@ -41,25 +61,21 @@ public class Reminder {
 		return note;
 	}
 
-
 	public void setNote(String note) {
 		this.note = note;
 	}
-
 
 	public LocalDateTime getReminderDateTime() {
 		return reminderDateTime;
 	}
 
-
 	public void setReminderDateTime(LocalDateTime reminderDateTime) {
 		this.reminderDateTime = reminderDateTime;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Reminder [note=" + note + ", priminimoLaikas=" + reminderDateTime + "]";
+		return "Reminder [note=" + note + ", priminimoLaikas=" + reminderDateTime + "Username:" + user.getLogin() + "]";
 	}
 	
 	

@@ -24,31 +24,15 @@ import lt.baltic.talents.projects.CalendarNoteReminder.helpers.MessageHelper;
 import lt.baltic.talents.projects.CalendarNoteReminder.models.Reminder;
 import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 import lt.baltic.talents.projects.CalendarNoteReminder.services.ReminderService;
+import lt.baltic.talents.projects.CalendarNoteReminder.services.ReminderServiceImpl;
 
 @Controller
 public class BaseController {
 	
 	@Autowired
 	private MessageHelper helper;
-//	private ReminderService reminderService;
+	private ReminderService reminderService;
 
-//	@RequestMapping(value = "/base", method = RequestMethod.POST)
-//	public String setReminder(Model model,
-//			@RequestParam(value = "reminderDate", required = false) String reminderDate,
-//			@RequestParam(value = "reminderNote", required = false) String reminderNote){
-////		
-//		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-//		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate, dateFormatter);
-//		
-//		Reminder reminder = new Reminder(reminderNote, reminderTime);
-//		
-//		boolean setReminder = reminderService.set(reminder);
-//		
-//		System.out.println(setReminder);
-//		
-//		return "hello/base";
-//	}
-//	
 //	@RequestMapping(value = "/base", method = RequestMethod.GET)
 //	public String loggedIn(Model model,
 //			@RequestParam(value = "user", required = false) String userParam,
@@ -82,8 +66,26 @@ public class BaseController {
 //	
 //	
 	
+	@RequestMapping(value = "/base", method = RequestMethod.POST)
+	public String setReminder(Model model,
+			@RequestParam(value = "reminderDate", required = false) String reminderDate,
+			@RequestParam(value = "reminderNote", required = false) String reminderNote) {
+		
+		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
+		User user = (User) model.asMap().get("user");
+		
+		Reminder reminder = new Reminder(reminderNote, reminderTime, user);
+		
+		boolean setReminder = reminderService.set(reminder);
+	
+		//System.out.println(setReminder);
+		
+		return "hello/base";
+	}
+	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
+	public String start(Model model) {
+		
 		LocalDateTime date = LocalDateTime.now();
 		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
 
@@ -97,23 +99,7 @@ public class BaseController {
 		
 		return "hello/base";
 	}
-	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
-//		LocalDateTime date = LocalDateTime.now();
-//		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
-//
-//		String operatingSystem = System.getProperty("os.name");
-//		model.addAttribute("operatingSystem", operatingSystem);
-//		
-//		String javaVersion = System.getProperty("java.version");
-//		model.addAttribute("javaVersion", javaVersion);
-//		
-//		System.out.println(helper.getMessage("message.hello"));
-//		
-//		return "hello/base";
-//	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start() {
 		return "login/login";
