@@ -1,10 +1,15 @@
 package lt.baltic.talents.projects.CalendarNoteReminder.daos;
 
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import lt.baltic.talents.projects.CalendarNoteReminder.models.Reminder;
+import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 
 public class ReminderDAOimpl implements ReminderDAO{
 

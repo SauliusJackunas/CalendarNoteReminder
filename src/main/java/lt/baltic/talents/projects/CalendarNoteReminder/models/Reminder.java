@@ -1,5 +1,6 @@
 package lt.baltic.talents.projects.CalendarNoteReminder.models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ public class Reminder implements Serializable {
 	LocalDateTime reminderDateTime;
 	
 	@ManyToOne
-    @JoinColumn(name="login")
+    @JoinColumn(name="USER_ID")
 	User user;
 	
 	public Reminder() {}

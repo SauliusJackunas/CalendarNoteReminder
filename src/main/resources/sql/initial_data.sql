@@ -1,4 +1,4 @@
-INSERT INTO TBL_USERS (USER_ID, USER_LOGIN, USER_PWD) VALUES (1, 'admin', 'admin', 'Reminderis nenustatytas'); //superuser
+INSERT INTO TBL_USERS (USER_ID, USER_LOGIN, USER_PWD) VALUES (1, 'admin', 'admin');
 INSERT INTO TBL_USERS (USER_ID, USER_LOGIN, USER_PWD) VALUES (2, 'Saulius', 'saulius');
 INSERT INTO TBL_USERS (USER_ID, USER_LOGIN, USER_PWD) VALUES (3, 'Karolis', 'karolis');
 INSERT INTO TBL_USERS (USER_ID, USER_LOGIN, USER_PWD) VALUES (4, 'Gintas', 'gintas');
