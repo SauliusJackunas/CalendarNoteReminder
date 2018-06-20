@@ -22,7 +22,7 @@ public class BaseController {
 	
 	@Autowired
 	private MessageHelper helper;
-	private ReminderService reminderService;
+//	private ReminderService reminderService;
 
 	@RequestMapping(value = "/base", method = RequestMethod.POST)
 	public String setReminder(Model model,
