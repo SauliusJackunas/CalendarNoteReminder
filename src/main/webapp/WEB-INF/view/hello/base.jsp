@@ -15,7 +15,11 @@
 <title><spring:message code="message.title" /></title>
 </head>
 <body>
-
+	<c:if test="${empty user}">
+		<p class="subtitle fancy">
+		<spring:message code="message.operating_system" />
+		</p>
+	</c:if>
 	<c:if test="${not empty user}">
 		<article>
 			<h1>
