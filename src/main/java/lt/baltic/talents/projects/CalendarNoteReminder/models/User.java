@@ -1,6 +1,7 @@
 package lt.baltic.talents.projects.CalendarNoteReminder.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,13 +30,10 @@ public class User implements Serializable {
 	@Column(name = "USER_PWD")
 	private char[] pwd;
 	
-<<<<<<< HEAD
 	@Column(name = "USER_ADMIN")
 	private boolean admin;
 	
-=======
 	@Column(name = "USER_REMINDER")
->>>>>>> parent of 0c32f10... Merge branch 'master' of https://github.com/SauliusJackunas/CalendarNoteReminder
 	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
 	private List<Reminder> reminder;
 	
@@ -47,7 +45,6 @@ public class User implements Serializable {
 		
 	}
 	
-<<<<<<< HEAD
 	public User(String login, char[] pwd, boolean admin ) {
 		this.login = login;
 		this.pwd = pwd.clone();
@@ -56,13 +53,11 @@ public class User implements Serializable {
 		
 	}
 	
-	public User (String login) {
-=======
 	public User (String login, List<Reminder> reminder) {
->>>>>>> parent of 0c32f10... Merge branch 'master' of https://github.com/SauliusJackunas/CalendarNoteReminder
 		this.login = login;
 		this.reminder = reminder;
 	}
+	
 
 	public List<Reminder> getReminder() {
 		return reminder;

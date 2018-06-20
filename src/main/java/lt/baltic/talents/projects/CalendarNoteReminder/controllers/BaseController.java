@@ -47,20 +47,26 @@ public class BaseController {
 		System.out.println(setReminder);
 		
 		return "hello/base";
+		
+		
 	}
 	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
 	public String loggedIn(Model model,
 			@RequestParam(value = "user", required = false) String userParam,
-			@RequestParam(value = "pwd", required = false) String pwd, 
-			@RequestParam(value = "user", required = false) User user,
-			@RequestParam(value = "reminder", required = false) Reminder reminder) throws ParseException{
+			@RequestParam(value = "pwd", required = false) String pwd) throws ParseException {
+//			@RequestParam(value = "user", required = false) User user,
+//			@RequestParam(value = "reminder", required = false) Reminder reminder) throws ParseException{
 		
-//--------------------------------------------------------------------------------
+
+		//--------------------------------------------------------------------------------
+		User user1 = (User) model.asMap().get("user");
+		Reminder reminder = (Reminder) user1.getReminder();
+
 		class MyTimerTask extends TimerTask{
 			public void run(){
 				JOptionPane.showMessageDialog(null, 
-						reminder.getNote()
+						reminder.getNote() 
 						);
 		    }
 		}
@@ -97,25 +103,25 @@ public class BaseController {
 //		return "login/login";
 //	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
-		LocalDateTime date = LocalDateTime.now();
-		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
-
-		String operatingSystem = System.getProperty("os.name");
-		model.addAttribute("operatingSystem", operatingSystem);
-		
-		String javaVersion = System.getProperty("java.version");
-		model.addAttribute("javaVersion", javaVersion);
-		
-		System.out.println(helper.getMessage("message.hello"));
-		
-		return "hello/base";
-	}
-
-	public String start() {
-		return "login/login";
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
+//		LocalDateTime date = LocalDateTime.now();
+//		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
+//
+//		String operatingSystem = System.getProperty("os.name");
+//		model.addAttribute("operatingSystem", operatingSystem);
+//		
+//		String javaVersion = System.getProperty("java.version");
+//		model.addAttribute("javaVersion", javaVersion);
+//		
+//		System.out.println(helper.getMessage("message.hello"));
+//		
+//		return "hello/base";
+//	}
+//
+//	public String start() {
+//		return "login/login";
+//	}
 }
 
 
