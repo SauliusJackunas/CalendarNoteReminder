@@ -113,10 +113,11 @@ public class BaseController {
 //		
 //		return "hello/base";
 //	}
-
-//	public String start() {
-//		return "login/login";
-//	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String start() {
+		return "login/login";
+	}
 }
 
 
