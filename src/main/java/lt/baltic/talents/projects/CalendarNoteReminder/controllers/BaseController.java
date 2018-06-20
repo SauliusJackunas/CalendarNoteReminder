@@ -82,7 +82,7 @@ public class BaseController {
 //	
 //	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/base", method = RequestMethod.GET)
 	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
 		LocalDateTime date = LocalDateTime.now();
 		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
@@ -95,7 +95,7 @@ public class BaseController {
 		
 		System.out.println(helper.getMessage("message.hello"));
 		
-		return "login/login";
+		return "hello/base";
 	}
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
