@@ -4,7 +4,7 @@ import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 
 public interface UserService {
 
-	boolean login(User user);
+	User login(User user);
 	
 	boolean create(User user);
 	

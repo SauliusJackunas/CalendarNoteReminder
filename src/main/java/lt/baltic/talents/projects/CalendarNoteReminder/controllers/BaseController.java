@@ -23,18 +23,20 @@ public class BaseController {
 	
 	@Autowired
 	private MessageHelper helper;
+	private ReminderService reminderService;
 
 	@RequestMapping(value = "/base", method = RequestMethod.POST)
 	public String setReminder(Model model,
 			@RequestParam(value = "reminderDate", required = false) String reminderDate,
 			@RequestParam(value = "reminderNote", required = false) String reminderNote) {
 		
-	//	LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
+		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
+		User user = (User) model.asMap().get("user");
 		
-	//	Reminder reminder = new Reminder(reminderNote, reminderTime);
+		Reminder reminder = new Reminder(reminderNote, reminderTime, user);
 		
-		//boolean setReminder = reminderService.set(reminder);
-		
+		boolean setReminder = reminderService.set(reminder);
+	
 		//System.out.println(setReminder);
 		
 		return "hello/base";
@@ -68,13 +70,7 @@ public class BaseController {
 //	}
 	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
-		
-		ReminderService reminderService = new ReminderServiceImpl();
-		User user = (User) model.asMap().get("user");
-		List<Reminder> reminders = reminderService.get(user);
-		
-		reminders.stream().forEach(x -> System.out.println(x.toString()));
+	public String start(Model model) {
 		
 		LocalDateTime date = LocalDateTime.now();
 		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));

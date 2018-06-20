@@ -38,13 +38,22 @@ public class Reminder implements Serializable {
 	
 	public Reminder() {}
 	
-	public Reminder(String note, LocalDateTime reminderDateTime) {
+	public Reminder(String note, LocalDateTime reminderDateTime, User user) {
 		this.note = note;
 		this.reminderDateTime = reminderDateTime;
+		this.user = user;
 	}
 	
 	public Long getId() {
 		return id;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void setId(Long id) {
@@ -69,7 +78,7 @@ public class Reminder implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Reminder [note=" + note + ", priminimoLaikas=" + reminderDateTime + "]";
+		return "Reminder [note=" + note + ", priminimoLaikas=" + reminderDateTime + "Username:" + user.getLogin() + "]";
 	}
 	
 	
