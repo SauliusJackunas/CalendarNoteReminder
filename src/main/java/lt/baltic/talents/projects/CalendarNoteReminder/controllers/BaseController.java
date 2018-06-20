@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lt.baltic.talents.projects.CalendarNoteReminder.helpers.MessageHelper;
 import lt.baltic.talents.projects.CalendarNoteReminder.models.Reminder;
+import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 import lt.baltic.talents.projects.CalendarNoteReminder.services.ReminderService;
 
 @Controller
@@ -32,9 +35,10 @@ public class BaseController {
 	@RequestMapping(value = "/base", method = RequestMethod.POST)
 	public String setReminder(Model model,
 			@RequestParam(value = "reminderDate", required = false) String reminderDate,
-			@RequestParam(value = "reminderNote", required = false) String reminderNote) {
+			@RequestParam(value = "reminderNote", required = false) String reminderNote){
 		
-		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate, dateFormatter);
 		
 		Reminder reminder = new Reminder(reminderNote, reminderTime);
 		
@@ -46,20 +50,28 @@ public class BaseController {
 	}
 	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
-			@RequestParam(value = "pwd", required = false) String pwd, Model model) throws ParseException {
+	public String loggedIn(Model model,
+			@RequestParam(value = "user", required = false) String userParam,
+			@RequestParam(value = "pwd", required = false) String pwd, 
+			@RequestParam(value = "user", required = false) User user,
+			@RequestParam(value = "reminder", required = false) List<Reminder> reminder) throws ParseException{
 		
-				class MyTimerTask extends TimerTask{
-					@Override
-				    public void run(){
-						JOptionPane.showMessageDialog(null, "You have an event!");
-				    }
-				}
+//--------------------------------------------------------------------------------
+		class MyTimerTask extends TimerTask{
+			public void run(){
+				JOptionPane.showMessageDialog(null, 
+						((Reminder) reminder).getNote()
+						);
+		    }
+		}
 		
-				DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-				Date setDate = (Date)dateFormatter.parse("2018-06-20 12:06");
-				Timer timer = new Timer();
-				timer.schedule(new MyTimerTask(), setDate);
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date setDate = (Date)dateFormatter.parse(
+				((Reminder) reminder).getReminderDateTime().toString()
+				);
+		Timer timer = new Timer();
+		timer.schedule(new MyTimerTask(), setDate);
+//---------------------------------------------------------------------------------
 		
 				if(userParam != null) {
 					return "hello/base";
@@ -104,27 +116,6 @@ public class BaseController {
 	public String start() {
 		return "login/login";
 	}
-	
-//--------------------------------------------------------------------
-//	public class getReminder {
-//		
-//		private class MyTimerTask extends TimerTask{
-//			
-//			@Override
-//		    public void run(){
-//				JOptionPane.showMessageDialog(null, "You have an event!");
-//		    }
-//		}
-//
-//		public void main(String[] args) throws ParseException {
-//			
-//		    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-//		    Date setDate = (Date)dateFormatter.parse("2018-06-19 21:37");
-//		    Timer timer = new Timer();
-//		    timer.schedule(new MyTimerTask(), setDate);
-//		}
-//	}
-//
 }
 
 
