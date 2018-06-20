@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean login(User user) {
+	public User login(User user) {
 		@SuppressWarnings("unchecked")
 		TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where login = ?1 and pwd = ?2");
 		
@@ -38,10 +38,10 @@ public class UserDaoImpl implements UserDao {
 		List<User> users = query.getResultList();
 		
 		if (users != null && users.size() == 1) {
-			return true;
+			return users.get(0);
 		}
 		
-		return false;
+		return null;
 	}
 
 }
