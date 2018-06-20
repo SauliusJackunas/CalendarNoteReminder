@@ -30,72 +30,56 @@ public class BaseController {
 	
 	@Autowired
 	private MessageHelper helper;
-	private ReminderService reminderService;
+//	private ReminderService reminderService;
 
-	@RequestMapping(value = "/base", method = RequestMethod.POST)
-	public String setReminder(Model model,
-			@RequestParam(value = "reminderDate", required = false) String reminderDate,
-			@RequestParam(value = "reminderNote", required = false) String reminderNote){
-		
-		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate, dateFormatter);
-		
-		Reminder reminder = new Reminder(reminderNote, reminderTime);
-		
-		boolean setReminder = reminderService.set(reminder);
-		
-		System.out.println(setReminder);
-		
-		return "hello/base";
-	}
-	
-	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String loggedIn(Model model,
-			@RequestParam(value = "user", required = false) String userParam,
-			@RequestParam(value = "pwd", required = false) String pwd, 
-			@RequestParam(value = "user", required = false) User user,
-			@RequestParam(value = "reminder", required = false) Reminder reminder) throws ParseException{
+//	@RequestMapping(value = "/base", method = RequestMethod.POST)
+//	public String setReminder(Model model,
+//			@RequestParam(value = "reminderDate", required = false) String reminderDate,
+//			@RequestParam(value = "reminderNote", required = false) String reminderNote){
+////		
+//		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate, dateFormatter);
+//		
+//		Reminder reminder = new Reminder(reminderNote, reminderTime);
+//		
+//		boolean setReminder = reminderService.set(reminder);
+//		
+//		System.out.println(setReminder);
+//		
+//		return "hello/base";
+//	}
+//	
+//	@RequestMapping(value = "/base", method = RequestMethod.GET)
+//	public String loggedIn(Model model,
+//			@RequestParam(value = "user", required = false) String userParam,
+//			@RequestParam(value = "pwd", required = false) String pwd ) {
+//			@RequestParam(value = "user", required = false) User user,
+//			@RequestParam(value = "reminder", required = false) Reminder reminder) throws ParseException{
 		
 //--------------------------------------------------------------------------------
-		class MyTimerTask extends TimerTask{
-			public void run(){
-				JOptionPane.showMessageDialog(null, 
-						reminder.getNote()
-						);
-		    }
-		}
+//		class MyTimerTask extends TimerTask{
+//			public void run(){
+//				JOptionPane.showMessageDialog(null, 
+//						reminder.getNote()
+//						);
+//		    }
+//		}
 		
-		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		Date setDate = (Date)dateFormatter.parse(
-				reminder.getReminderDateTime().toString()
-				);
-		Timer timer = new Timer();
-		timer.schedule(new MyTimerTask(), setDate);
+//		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//		Date setDate = (Date)dateFormatter.parse(
+//				reminder.getReminderDateTime().toString()
+//				);
+//		Timer timer = new Timer();
+//		timer.schedule(new MyTimerTask(), setDate);
 //---------------------------------------------------------------------------------
-		
-				if(userParam != null) {
-					return "hello/base";
-				}
-					return "login/failure";
-	}
-	
-	
-	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
-//		LocalDateTime date = LocalDateTime.now();
-//		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
-//
-//		String operatingSystem = System.getProperty("os.name");
-//		model.addAttribute("operatingSystem", operatingSystem);
 //		
-//		String javaVersion = System.getProperty("java.version");
-//		model.addAttribute("javaVersion", javaVersion);
-//		
-//		System.out.println(helper.getMessage("message.hello"));
-//		
-//		return "login/login";
+//				if(userParam != null) {
+//					return "hello/base";
+//				}
+//					return "login/failure";
 //	}
+//	
+//	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
@@ -110,12 +94,28 @@ public class BaseController {
 		
 		System.out.println(helper.getMessage("message.hello"));
 		
-		return "hello/base";
-	}
-
-	public String start() {
 		return "login/login";
 	}
+	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
+//		LocalDateTime date = LocalDateTime.now();
+//		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
+//
+//		String operatingSystem = System.getProperty("os.name");
+//		model.addAttribute("operatingSystem", operatingSystem);
+//		
+//		String javaVersion = System.getProperty("java.version");
+//		model.addAttribute("javaVersion", javaVersion);
+//		
+//		System.out.println(helper.getMessage("message.hello"));
+//		
+//		return "hello/base";
+//	}
+
+//	public String start() {
+//		return "login/login";
+//	}
 }
 
 
