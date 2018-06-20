@@ -1,8 +1,15 @@
 package lt.baltic.talents.projects.CalendarNoteReminder.controllers;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,16 +33,29 @@ public class BaseController {
 //		return "hello/base";
 //	}
 	
-//	@RequestMapping(value = "/base", method = RequestMethod.GET)
-//	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
-//			@RequestParam(value = "pwd", required = false) String pwd, Model model) {
-//		
-//		if(userParam != null) {
-//			return "hello/base";
-//		}
-//			return "login/failure";
-//		
-//	}
+	@RequestMapping(value = "/base", method = RequestMethod.GET)
+	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
+			@RequestParam(value = "pwd", required = false) String pwd, Model model) throws ParseException {
+		
+				class MyTimerTask extends TimerTask{
+					@Override
+				    public void run(){
+						JOptionPane.showMessageDialog(null, "You have an event!");
+				    }
+				}
+		
+				DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				Date setDate = (Date)dateFormatter.parse("2018-06-20 12:06");
+				Timer timer = new Timer();
+				timer.schedule(new MyTimerTask(), setDate);
+		
+				if(userParam != null) {
+					return "hello/base";
+				}
+					return "login/failure";
+	}
+	
+	
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
@@ -53,7 +73,7 @@ public class BaseController {
 //		return "login/login";
 //	}
 	
-	@RequestMapping(value = "/base", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
 		LocalDateTime date = LocalDateTime.now();
 		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
@@ -69,10 +89,30 @@ public class BaseController {
 		return "hello/base";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start() {
-		return "/login/login";
+		return "login/login";
 	}
 	
-
+//--------------------------------------------------------------------
+//	public class getReminder {
+//		
+//		private class MyTimerTask extends TimerTask{
+//			
+//			@Override
+//		    public void run(){
+//				JOptionPane.showMessageDialog(null, "You have an event!");
+//		    }
+//		}
+//
+//		public void main(String[] args) throws ParseException {
+//			
+//		    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//		    Date setDate = (Date)dateFormatter.parse("2018-06-19 21:37");
+//		    Timer timer = new Timer();
+//		    timer.schedule(new MyTimerTask(), setDate);
+//		}
+//	}
+//
 }
+
+
