@@ -21,7 +21,7 @@
 <script>
 (function() {
     new Picker(document.querySelector('.js-date-picker'), {
-          format: 'MM/DD/YYYY HH:mm',
+          format: 'YYYY-MM-DD HH:mm',
     });
 })();
 </script>

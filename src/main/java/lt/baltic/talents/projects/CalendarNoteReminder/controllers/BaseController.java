@@ -19,19 +19,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lt.baltic.talents.projects.CalendarNoteReminder.helpers.MessageHelper;
+import lt.baltic.talents.projects.CalendarNoteReminder.models.Reminder;
+import lt.baltic.talents.projects.CalendarNoteReminder.services.ReminderService;
 
 @Controller
 public class BaseController {
 	
 	@Autowired
 	private MessageHelper helper;
+	private ReminderService reminderService;
 
-//	@RequestMapping(value = "/base", method = RequestMethod.POST)
-//	public String setReminder(@RequestParam(value = "reminderDate", required = false) String reminderDate, Model model) {
-//		
-//		System.out.println(reminderDate);
-//		return "hello/base";
-//	}
+	@RequestMapping(value = "/base", method = RequestMethod.POST)
+	public String setReminder(Model model,
+			@RequestParam(value = "reminderDate", required = false) String reminderDate,
+			@RequestParam(value = "reminderNote", required = false) String reminderNote) {
+		
+		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
+		
+		Reminder reminder = new Reminder(reminderNote, reminderTime);
+		
+		boolean setReminder = reminderService.set(reminder);
+		
+		System.out.println(setReminder);
+		
+		return "hello/base";
+	}
 	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
 	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
