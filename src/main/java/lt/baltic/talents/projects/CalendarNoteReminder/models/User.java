@@ -33,15 +33,19 @@ public class User implements Serializable {
 	@Column(name = "USER_ADMIN")
 	private boolean admin;
 	
+<<<<<<< HEAD
 	@Column(name = "USER_REMINDER")
+=======
+>>>>>>> parent of 0e5663e... gal veiks
 	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
-	private List<Reminder> reminder;
+	private List<Reminder> reminder = new ArrayList<>();
 	
 	public User() {}
 
 	public User(String login, char[] pwd ) {
 		this.login = login;
 		this.pwd = pwd.clone();
+		this.reminder = new ArrayList<Reminder>();
 		
 	}
 	
@@ -53,9 +57,13 @@ public class User implements Serializable {
 		
 	}
 	
+<<<<<<< HEAD
 	public User (String login, List<Reminder> reminder) {
+=======
+	public User (String login) {
+>>>>>>> parent of 0e5663e... gal veiks
 		this.login = login;
-		this.reminder = reminder;
+		this.reminder = new ArrayList<Reminder>();
 	}
 	
 
