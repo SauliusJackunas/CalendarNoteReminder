@@ -30,11 +30,11 @@ public class BaseController {
 			@RequestParam(value = "reminderNote", required = false) String reminderNote,
 			@RequestParam(value = "user", required = false) User user) {
 		
-		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
+	//	LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
 		
-		Reminder reminder = new Reminder(reminderNote, reminderTime);
+	//	Reminder reminder = new Reminder(reminderNote, reminderTime);
 		
-		List<Reminder> reminders = reminderService.get(user);
+	//	List<Reminder> reminders = reminderService.get(user);
 		
 		
 		

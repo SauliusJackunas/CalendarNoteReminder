@@ -30,9 +30,8 @@ public class User implements Serializable {
 	@Column(name = "USER_PWD")
 	private char[] pwd;
 	
-	@Column(name = "USER_REMINDER")
 	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
-	private List<Reminder> reminder;
+	private List<Reminder> reminder = new ArrayList<>();
 	
 	public User() {}
 
