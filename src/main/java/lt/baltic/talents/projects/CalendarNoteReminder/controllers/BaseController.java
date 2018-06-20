@@ -54,20 +54,20 @@ public class BaseController {
 			@RequestParam(value = "user", required = false) String userParam,
 			@RequestParam(value = "pwd", required = false) String pwd, 
 			@RequestParam(value = "user", required = false) User user,
-			@RequestParam(value = "reminder", required = false) List<Reminder> reminder) throws ParseException{
+			@RequestParam(value = "reminder", required = false) Reminder reminder) throws ParseException{
 		
 //--------------------------------------------------------------------------------
 		class MyTimerTask extends TimerTask{
 			public void run(){
 				JOptionPane.showMessageDialog(null, 
-						((Reminder) reminder).getNote()
+						reminder.getNote()
 						);
 		    }
 		}
 		
 		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date setDate = (Date)dateFormatter.parse(
-				((Reminder) reminder).getReminderDateTime().toString()
+				reminder.getReminderDateTime().toString()
 				);
 		Timer timer = new Timer();
 		timer.schedule(new MyTimerTask(), setDate);
