@@ -16,7 +16,6 @@ public class ReminderDAOimpl implements ReminderDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Transactional
 	@Override
 	public boolean set(Reminder reminder) {
 		
@@ -28,7 +27,6 @@ public class ReminderDAOimpl implements ReminderDAO{
 		return false;
 	}
 	
-	@Transactional
 	@Override
 	public void delete(Reminder reminder) {
 		
@@ -36,17 +34,14 @@ public class ReminderDAOimpl implements ReminderDAO{
 		
 	}
 
-	@Transactional
 	@Override
 	public List<Reminder> get(User user) {
 		
-		TypedQuery<Reminder> query = sessionFactory.getCurrentSession().createQuery("from Reminder where login = ?1");
+		TypedQuery<Reminder> query = sessionFactory.getCurrentSession().createQuery("from Reminder where id = ?1");
 		
-		query.setParameter(1, user.getLogin());
+		query.setParameter(1, user.getId());
 		
 		List<Reminder> reminders = query.getResultList();
-		
-		reminders.stream().forEach(x -> System.out.println(x.toString()));
 		
 		return reminders;
 		

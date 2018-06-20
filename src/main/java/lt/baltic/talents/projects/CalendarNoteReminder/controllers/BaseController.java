@@ -16,27 +16,22 @@ import lt.baltic.talents.projects.CalendarNoteReminder.helpers.MessageHelper;
 import lt.baltic.talents.projects.CalendarNoteReminder.models.Reminder;
 import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 import lt.baltic.talents.projects.CalendarNoteReminder.services.ReminderService;
+import lt.baltic.talents.projects.CalendarNoteReminder.services.ReminderServiceImpl;
 
 @Controller
 public class BaseController {
 	
 	@Autowired
 	private MessageHelper helper;
-//	private ReminderService reminderService;
 
 	@RequestMapping(value = "/base", method = RequestMethod.POST)
 	public String setReminder(Model model,
 			@RequestParam(value = "reminderDate", required = false) String reminderDate,
-			@RequestParam(value = "reminderNote", required = false) String reminderNote,
-			@RequestParam(value = "user", required = false) User user) {
+			@RequestParam(value = "reminderNote", required = false) String reminderNote) {
 		
 	//	LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
 		
 	//	Reminder reminder = new Reminder(reminderNote, reminderTime);
-		
-	//	List<Reminder> reminders = reminderService.get(user);
-		
-		
 		
 		//boolean setReminder = reminderService.set(reminder);
 		
@@ -74,6 +69,13 @@ public class BaseController {
 	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
 	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
+		
+		ReminderService reminderService = new ReminderServiceImpl();
+		User user = (User) model.asMap().get("user");
+		List<Reminder> reminders = reminderService.get(user);
+		
+		reminders.stream().forEach(x -> System.out.println(x.toString()));
+		
 		LocalDateTime date = LocalDateTime.now();
 		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
 

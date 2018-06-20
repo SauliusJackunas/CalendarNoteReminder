@@ -19,9 +19,6 @@ import javax.persistence.TemporalType;
 @Table(name = "TBL_REMINDERS")
 public class Reminder implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -39,38 +36,35 @@ public class Reminder implements Serializable {
     @JoinColumn(name="USER_ID", nullable=false)
 	private User user;
 	
+	public Reminder() {}
+	
 	public Reminder(String note, LocalDateTime reminderDateTime) {
 		this.note = note;
 		this.reminderDateTime = reminderDateTime;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNote() {
 		return note;
 	}
 
-
 	public void setNote(String note) {
 		this.note = note;
 	}
-
 
 	public LocalDateTime getReminderDateTime() {
 		return reminderDateTime;
 	}
 
-
 	public void setReminderDateTime(LocalDateTime reminderDateTime) {
 		this.reminderDateTime = reminderDateTime;
-	}
-
-	
-	public LocalDateTime getReminderLocalDateTime() {
-		return null;
-	}
-
-
-	public void setReminderLocalDateTime(LocalDateTime reminderDateTime) {
-		//Date.from(date.atZone(ZoneId.systemDefault()).toInstant())
 	}
 
 	@Override
