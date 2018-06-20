@@ -30,21 +30,34 @@ public class User implements Serializable {
 	@Column(name = "USER_PWD")
 	private char[] pwd;
 	
+	
+
+
 	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
-	private List<Reminder> reminder = new ArrayList<>();
+	private List<Reminder> reminder;
 	
 	public User() {}
 
 	public User(String login, char[] pwd ) {
 		this.login = login;
 		this.pwd = pwd.clone();
-		this.reminder = new ArrayList<Reminder>();
 		
 	}
 	
-	public User (String login) {
+
+	public User(String login, char[] pwd, List<Reminder> reminder ) {
 		this.login = login;
+		this.pwd = pwd.clone();
 		this.reminder = new ArrayList<Reminder>();
+
+		
+	}
+	
+
+	public User (String login, List<Reminder> reminder) {
+
+		this.login = login;
+		this.reminder = reminder;
 	}
 
 	public List<Reminder> getReminder() {
@@ -80,6 +93,9 @@ public class User implements Serializable {
 	}
 
 	
+	
+
+
 	@Override
 	public String toString() {
 		return "User [reminder=" + reminder + ", id=" + id + ", login=" + login + ", pwd="

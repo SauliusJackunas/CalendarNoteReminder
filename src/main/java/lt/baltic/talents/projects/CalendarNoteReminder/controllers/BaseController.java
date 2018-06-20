@@ -1,9 +1,17 @@
 package lt.baltic.talents.projects.CalendarNoteReminder.controllers;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,39 +30,56 @@ public class BaseController {
 	
 	@Autowired
 	private MessageHelper helper;
-//	private ReminderService reminderService;
+	private ReminderService reminderService;
 
 	@RequestMapping(value = "/base", method = RequestMethod.POST)
 	public String setReminder(Model model,
 			@RequestParam(value = "reminderDate", required = false) String reminderDate,
-			@RequestParam(value = "reminderNote", required = false) String reminderNote,
-			@RequestParam(value = "user", required = false) User user) {
+			@RequestParam(value = "reminderNote", required = false) String reminderNote){
 		
-	//	LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate, dateFormatter);
 		
-	//	Reminder reminder = new Reminder(reminderNote, reminderTime);
+		Reminder reminder = new Reminder(reminderNote, reminderTime);
 		
-	//	List<Reminder> reminders = reminderService.get(user);
+		boolean setReminder = reminderService.set(reminder);
 		
-		
-		
-		//boolean setReminder = reminderService.set(reminder);
-		
-		//System.out.println(setReminder);
+		System.out.println(setReminder);
 		
 		return "hello/base";
 	}
 	
-//	@RequestMapping(value = "/base", method = RequestMethod.GET)
-//	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
-//			@RequestParam(value = "pwd", required = false) String pwd, Model model) {
-//		
-//		if(userParam != null) {
-//			return "hello/base";
-//		}
-//			return "login/failure";
-//		
-//	}
+	@RequestMapping(value = "/base", method = RequestMethod.GET)
+	public String loggedIn(Model model,
+			@RequestParam(value = "user", required = false) String userParam,
+			@RequestParam(value = "pwd", required = false) String pwd, 
+			@RequestParam(value = "user", required = false) User user,
+			@RequestParam(value = "reminder", required = false) Reminder reminder) throws ParseException{
+		
+//--------------------------------------------------------------------------------
+		class MyTimerTask extends TimerTask{
+			public void run(){
+				JOptionPane.showMessageDialog(null, 
+						reminder.getNote()
+						);
+		    }
+		}
+		
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date setDate = (Date)dateFormatter.parse(
+				reminder.getReminderDateTime().toString()
+				);
+		Timer timer = new Timer();
+		timer.schedule(new MyTimerTask(), setDate);
+//---------------------------------------------------------------------------------
+		
+				if(userParam != null) {
+					return "hello/base";
+				}
+					return "login/failure";
+	}
+	
+	
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
@@ -72,7 +97,7 @@ public class BaseController {
 //		return "login/login";
 //	}
 	
-	@RequestMapping(value = "/base", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
 		LocalDateTime date = LocalDateTime.now();
 		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
@@ -88,10 +113,9 @@ public class BaseController {
 		return "hello/base";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String start() {
-		return "/login/login";
+		return "login/login";
 	}
-	
-
 }
+
+
