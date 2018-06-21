@@ -63,6 +63,9 @@
 				<label>Pick a reminder date and time: </label>
 				<input type="text" id="input" name="reminderDate">
 				<div class="js-mini-picker-container"></div>
+				<label>Enter note for reminder: </label>
+				<input type="text" id="note" name="reminderNote">
+				<br>
 				<input type="submit" name="submit">
 			</form:form>
 		</article>
