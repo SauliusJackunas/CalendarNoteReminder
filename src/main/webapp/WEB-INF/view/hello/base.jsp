@@ -52,9 +52,9 @@
 			</article>
 		</c:if>
 		<article>
-			<c:forEach items="${user.getReminders()}" var="reminder">
+			<c:forEach items="${user.getReminders()}" var="reminder" varStatus="count">
 				<ul>
-					<li>${reminder}</li>
+					<li id="reminder.${count.index}">${reminder} <input type="submit" name="remove" value="remove" onclick="remove('reminder.${count.index}')"></li>
 				</ul>
 			</c:forEach>
 		</article>
@@ -67,11 +67,20 @@
 				<input type="text" id="note" name="reminderNote">
 				<br>
 				<input type="submit" name="submit">
+				
 			</form:form>
 		</article>
 	</c:if>
 	<script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/picker.js"/>"></script>
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
+	
+	<script>
+		function remove(elementId) {
+			var elem = document.getElementById(elementId);
+			elem.remove();
+		}
+	</script>
+	
 </body>
 </html>
