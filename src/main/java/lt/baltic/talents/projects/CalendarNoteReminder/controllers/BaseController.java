@@ -31,8 +31,13 @@ public class BaseController {
 
 	@RequestMapping(value = "/base", method = RequestMethod.POST)
 	public String setReminder(Model model,
-			@RequestParam(value = "reminderDate", required = false) String reminderDate,
-			@RequestParam(value = "reminderNote", required = false) String reminderNote) {
+			@RequestParam(value = "reminderDate", required = true) String reminderDate,
+			@RequestParam(value = "reminderNote", required = true) String reminderNote) {
+		
+		if ((reminderDate == null || reminderDate.length() == 0) || (reminderNote == null || reminderNote.length() == 0)) {
+			model.addAttribute("user", user);
+			return "hello/base";
+		}
 		
 		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
 		
