@@ -25,6 +25,16 @@
 		    </p>
 		</article>
 	</c:if>
+	
+	<c:if test="${alert}">
+	
+	<div class="alert">
+  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+	</div>
+	
+	</c:if>
+	
+	
 	<article>
 		<c:forEach items="${user.getReminders()}" var="reminder">
     		<ul>

@@ -18,8 +18,13 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TBL_USERS")
-public class User implements Serializable {
+public class User implements Serializable, Cloneable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_ID")
@@ -78,6 +83,9 @@ public class User implements Serializable {
 		this.pwd = pwd;
 	}
 
+	public Object clone()throws CloneNotSupportedException{
+	return super.clone();
+	}
 	
 	@Override
 	public String toString() {
