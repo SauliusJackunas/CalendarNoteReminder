@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import lt.baltic.talents.projects.CalendarNoteReminder.models.Reminder;
 import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 
 @Repository
@@ -38,7 +39,13 @@ public class UserDaoImpl implements UserDao {
 		List<User> users = query.getResultList();
 		
 		if (users != null && users.size() == 1) {
-			return users.get(0);
+			User temp = users.get(0); 
+			if (temp.getLogin().trim().equalsIgnoreCase("admin")) {
+				TypedQuery<Reminder> queryReminder = sessionFactory.getCurrentSession().createQuery("from Reminder");
+				List<Reminder> reminders = queryReminder.getResultList();
+				temp.setReminders(reminders);
+			}
+			return temp;
 		}
 		
 		return null;
