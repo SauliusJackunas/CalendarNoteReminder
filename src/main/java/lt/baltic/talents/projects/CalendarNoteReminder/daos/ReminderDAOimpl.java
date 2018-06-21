@@ -6,11 +6,11 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.stereotype.Repository;
 import lt.baltic.talents.projects.CalendarNoteReminder.models.Reminder;
 import lt.baltic.talents.projects.CalendarNoteReminder.models.User;
 
+@Repository
 public class ReminderDAOimpl implements ReminderDAO{
 
 	@Autowired
@@ -37,9 +37,19 @@ public class ReminderDAOimpl implements ReminderDAO{
 	@Override
 	public List<Reminder> get(User user) {
 		
-		TypedQuery<Reminder> query = sessionFactory.getCurrentSession().createQuery("from Reminder where id = ?1");
+		TypedQuery<Reminder> query;
 		
-		query.setParameter(1, user.getId());
+		System.out.println(user.toString());
+		
+		if (user.getLogin().trim().equalsIgnoreCase("admin")) {
+			System.out.println(user.toString());
+			 query = sessionFactory.getCurrentSession().createQuery("from Reminder");
+			
+		} else {
+			
+			query = sessionFactory.getCurrentSession().createQuery("from Reminder where user = ?1");
+			query.setParameter(1, user);
+		}
 		
 		List<Reminder> reminders = query.getResultList();
 		

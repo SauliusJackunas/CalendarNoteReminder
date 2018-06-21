@@ -23,7 +23,10 @@ public class BaseController {
 	
 	@Autowired
 	private MessageHelper helper;
+	
+	@Autowired
 	private ReminderService reminderService;
+	
 	private User user;
 
 	@RequestMapping(value = "/base", method = RequestMethod.POST)
@@ -33,13 +36,19 @@ public class BaseController {
 		
 		LocalDateTime reminderTime = LocalDateTime.parse(reminderDate);
 		
-		model.addAttribute("user", user);
-		
 		Reminder reminder = new Reminder(reminderNote, reminderTime, user);
 		
-		//boolean setReminder = reminderService.set(reminder);
+		boolean setReminder = reminderService.set(reminder);
+		
+		List<Reminder> updatedReminders = reminderService.get(user);
+		
+		user.setReminders(updatedReminders);
+		
+		model.addAttribute("user", user);
 	
-		//System.out.println(setReminder);
+		if (setReminder) {
+			System.out.println(user.toString());
+		}
 		
 		return "hello/base";
 	}
