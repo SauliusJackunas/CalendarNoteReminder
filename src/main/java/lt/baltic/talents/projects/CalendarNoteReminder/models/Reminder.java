@@ -78,7 +78,7 @@ public class Reminder implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Reminder [note=" + note + ", priminimoLaikas=" + reminderDateTime + "Username:" + user.getLogin() + "]";
+		return "Username:" + user.getLogin() + ", priminimo laikas: " + reminderDateTime + ", reminder note: " + note;
 	}
 	
 	

@@ -55,35 +55,10 @@ public class BaseController {
 //		
 //	}
 	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String start(@RequestParam(value = "name", required = false) String name, Model model) {
-//		LocalDateTime date = LocalDateTime.now();
-//		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
-//
-//		String operatingSystem = System.getProperty("os.name");
-//		model.addAttribute("operatingSystem", operatingSystem);
-//		
-//		String javaVersion = System.getProperty("java.version");
-//		model.addAttribute("javaVersion", javaVersion);
-//		
-//		System.out.println(helper.getMessage("message.hello"));
-//		
-//		return "login/login";
-//	}
-	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
 	public String start(Model model) {
 		
 		user = (User) model.asMap().get("user");
-		
-		LocalDateTime date = LocalDateTime.now();
-		model.addAttribute("now", Date.from(date.atZone(ZoneId.systemDefault()).toInstant()));
-
-		String operatingSystem = System.getProperty("os.name");
-		model.addAttribute("operatingSystem", operatingSystem);
-		
-		String javaVersion = System.getProperty("java.version");
-		model.addAttribute("javaVersion", javaVersion);
 		
 		System.out.println(helper.getMessage("message.hello"));
 		
