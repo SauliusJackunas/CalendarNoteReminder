@@ -7,7 +7,7 @@ $(function(){
 	  rows: 3,
 	});
 	
-//	setInterval(function(){
-//		location.reload();
-//		}, 1000);
+	setInterval(function(){
+		location.reload();
+		}, 1000);
 })

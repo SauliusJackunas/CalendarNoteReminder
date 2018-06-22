@@ -10,11 +10,13 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.AlternativeJdkIdGenerator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,22 +39,17 @@ public class BaseController {
 	
 	private User user;
 
-//	private User oldUser;
+	private User oldUser;
 	
 	@RequestMapping(value = "/base", method = RequestMethod.POST)
 	public String setReminder(Model model,
-//<<<<<<< HEAD
 			@RequestParam(value = "reminderDate", required = false) String reminderDate,
 			@RequestParam(value = "reminderNote", required = false) String reminderNote, RedirectAttributes redirectAttributes) {
-//=======
-//			@RequestParam(value = "reminderDate", required = true) String reminderDate,
-//			@RequestParam(value = "reminderNote", required = true) String reminderNote) {
 		
 		if ((reminderDate == null || reminderDate.length() == 0) || (reminderNote == null || reminderNote.length() == 0)) {
 			model.addAttribute("user", user);
 			return "hello/base";
 		}
-//>>>>>>> aa99a59822b039bd7aa6b5d6e9828c131e153eb4
 		
 		String formatedDate = reminderDate.toString().replace(' ', 'T');
 		LocalDateTime reminderTime = LocalDateTime.parse(formatedDate);
@@ -71,8 +68,8 @@ public class BaseController {
 			System.out.println(user.toString());
 		}
 		redirectAttributes.addFlashAttribute("user", user);
-//		return "redirect:/base";
-		return "hello/base";
+		return "redirect:/base";
+//		return "hello/base";
 	}
 	
 //	@RequestMapping(value = "/base", method = RequestMethod.GET)
@@ -87,29 +84,31 @@ public class BaseController {
 //	}
 	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String start(Model model) throws ParseException{
+	public String start(Model model, RedirectAttributes redirectAttributes) throws ParseException, CloneNotSupportedException{
 		
 //---------------------------------------------Karoliui-------------------------------------
 //		User user = null;
-//		if(!model.containsAttribute("user")) {
-//			model.addAttribute("user", oldUser);
-//		}else {
-		user = (User) model.asMap().get("user");
-//		}
-//		oldUser = new User();
-//		oldUser = (User) user.clone();
+		if(!model.containsAttribute("user")) {
+			model.addAttribute("user", oldUser);
+		}else {
+			user = (User) model.asMap().get("user");
+		}
+		oldUser = new User();
+		oldUser = (User) user.clone();
 		
 		List<Reminder> reminders = user.getReminders();
 		
-//		System.out.println(helper.getMessage("message.hello"));
-	
 		for(Reminder rem : reminders) {
-//			if(rem.getReminderDateTime().isAfter(LocalDateTime.now())){
+			if(rem.getReminderDateTime().isAfter(LocalDateTime.now())){
 				class MyTimerTask extends TimerTask{
 					@Override
 				    public void run(){
 						System.out.println(rem.getNote());
 //						model.addAttribute("alert", true);
+						JDialog dialog = new JDialog();
+						dialog.setAlwaysOnTop(true);    
+						JOptionPane.showMessageDialog(dialog, rem.getNote());
+//						JOptionPane.showMessageDialog(null, rem.getNote());
 					}
 				}
 				DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -117,10 +116,9 @@ public class BaseController {
 			    Date date = (Date) dateFormatter.parse(formatedDate);
 			    Timer timer = new Timer();
 			    timer.schedule(new MyTimerTask(), date);
-//			}
+			}
 		}
 		
-//		redirectAttributes.addFlashAttribute("user", user);
 		return "hello/base";
 	}
 

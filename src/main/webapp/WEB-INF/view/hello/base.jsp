@@ -58,6 +58,7 @@
 				</ul>
 			</c:forEach>
 		</article>
+		
 		<article>
 			<form:form method="POST" action="base">
 				<label>Pick a reminder date and time: </label>
@@ -70,37 +71,20 @@
 				
 			</form:form>
 		</article>
+		
+			<script type="text/javascript">
+				function alertName(){
+					alert(
+							"BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM!!!!!!!!!!!!!!!!!!!!!"
+							);
+				} 
+			</script>
+		
 	</c:if>
-<<<<<<< HEAD
-	<c:if test="${alert}">
-	
-	<div class="alert">
-  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-	</div>
-	
-	</c:if>
-	
-	
-	<article>
-		<c:forEach items="${user.getReminders()}" var="reminder">
-    		<ul>
-    			<li>${reminder}</li>
-    		</ul>
-		</c:forEach>
-	</article>
-	<article>
-		<form:form method="POST" action="base">
-			<label>Pick a reminder date and time: </label>
-			<input type="text" id="input" name="reminderDate">
-			<div class="js-mini-picker-container"></div>
-			<input type="submit" name="submit">
-		</form:form>
-	</article>
-=======
->>>>>>> aa99a59822b039bd7aa6b5d6e9828c131e153eb4
 	<script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/picker.js"/>"></script>
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
+	<script type="text/javascript"> window.onload = alertName; </script>
 	
 	<script>
 		function remove(elementId) {
