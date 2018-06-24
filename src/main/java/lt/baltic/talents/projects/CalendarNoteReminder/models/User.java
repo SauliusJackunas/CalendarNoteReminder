@@ -54,6 +54,11 @@ public class User implements Serializable, Cloneable {
 	public List<Reminder> getReminders() {
 		return reminders;
 	}
+	
+	public Reminder getReminder(int id) {
+		return reminders.get(id);
+		
+	}
 
 	public void setReminders(List<Reminder> reminders) {
 		this.reminders = reminders;

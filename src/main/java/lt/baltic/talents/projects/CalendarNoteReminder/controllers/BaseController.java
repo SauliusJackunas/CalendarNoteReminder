@@ -69,31 +69,33 @@ public class BaseController {
 		}
 		redirectAttributes.addFlashAttribute("user", user);
 		return "redirect:/base";
-//		return "hello/base";
 	}
 	
-//	@RequestMapping(value = "/base", method = RequestMethod.GET)
-//	public String loggedIn(@RequestParam(value = "user", required = false) String userParam,
-//			@RequestParam(value = "pwd", required = false) String pwd, Model model) {
-//		
-//		if(userParam != null) {
-//			return "hello/base";
-//		}
-//			return "login/failure";
-//		
-//	}
+	@RequestMapping(value = "/rr", method = RequestMethod.POST)
+	public String removeReminder(@RequestParam(value = "reminderId") String reminderId, Model model, RedirectAttributes redirectAttributes){
+		
+		System.out.println(reminderId);
+		reminderService.delete(user.getReminder(Integer.valueOf(reminderId)));
+		
+		List<Reminder> updatedReminders = reminderService.get(user);
+		
+		user.setReminders(updatedReminders);
+		
+		model.addAttribute("user", user);
+		
+		redirectAttributes.addFlashAttribute("user", user);
+		return "redirect:/base";
+	}
 	
 	@RequestMapping(value = "/base", method = RequestMethod.GET)
 	public String start(Model model, RedirectAttributes redirectAttributes) throws ParseException, CloneNotSupportedException{
 		
-//---------------------------------------------Karoliui-------------------------------------
-//		User user = null;
 		if(!model.containsAttribute("user")) {
 			model.addAttribute("user", oldUser);
 		}else {
 			user = (User) model.asMap().get("user");
 		}
-		oldUser = new User();
+
 		oldUser = (User) user.clone();
 		
 		List<Reminder> reminders = user.getReminders();

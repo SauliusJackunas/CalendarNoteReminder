@@ -6,8 +6,20 @@ $(function(){
 	  inline: true,
 	  rows: 3,
 	});
-	
-//	setInterval(function(){
-//		location.reload();
-//		}, 1000);
+
+	$(".remove").click(function(){
+
+		console.log($(this).attr('id'));
+
+		$.post("/rr",
+			{
+				reminderId: $(this).attr('id')
+			}
+		);
+
+		$(this).parent().remove();
+		$(this).remove();
+
+	});
+
 })
