@@ -107,7 +107,7 @@ public class BaseController {
 //						model.addAttribute("alert", true);
 						JDialog dialog = new JDialog();
 						dialog.setAlwaysOnTop(true);    
-						JOptionPane.showMessageDialog(dialog, rem.getNote());
+						JOptionPane.showMessageDialog(dialog, rem.getNote(), "REMINDER!", JOptionPane.WARNING_MESSAGE);
 //						JOptionPane.showMessageDialog(null, rem.getNote());
 					}
 				}

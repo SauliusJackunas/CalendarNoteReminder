@@ -72,14 +72,6 @@
 			</form:form>
 		</article>
 		
-			<script type="text/javascript">
-				function alertName(){
-					alert(
-							"BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM!!!!!!!!!!!!!!!!!!!!!"
-							);
-				} 
-			</script>
-		
 	</c:if>
 	<script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/picker.js"/>"></script>
