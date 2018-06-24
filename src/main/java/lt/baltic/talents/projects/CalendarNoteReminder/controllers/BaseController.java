@@ -1,6 +1,8 @@
 package lt.baltic.talents.projects.CalendarNoteReminder.controllers;
 
 import java.util.Date;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +12,9 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,11 +108,12 @@ public class BaseController {
 					@Override
 				    public void run(){
 						System.out.println(rem.getNote());
-//						model.addAttribute("alert", true);
+						JLabel label =new JLabel(rem.getNote());
+						label.setForeground(Color.RED);
+						label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 22));
 						JDialog dialog = new JDialog();
 						dialog.setAlwaysOnTop(true);    
-						JOptionPane.showMessageDialog(dialog, rem.getNote(), "REMINDER!", JOptionPane.WARNING_MESSAGE);
-//						JOptionPane.showMessageDialog(null, rem.getNote());
+						JOptionPane.showMessageDialog(dialog, label, "THE PRINCESS NEEDS YOU!", JOptionPane.WARNING_MESSAGE, new ImageIcon("C:\\Users\\Domantas\\Desktop/QGo5isT.gif"));
 					}
 				}
 				DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
