@@ -67,7 +67,7 @@
 				<label>Enter note for reminder: </label>
 				<input type="text" id="note" name="reminderNote">
 				<br>
-				<input type="submit" name="submit">			
+				<input type="submit" name="submit" value="Add reminder">			
 			</form:form>
 		</article>
 		
