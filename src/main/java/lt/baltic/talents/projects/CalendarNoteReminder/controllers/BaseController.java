@@ -115,7 +115,7 @@ public class BaseController {
 						label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 22));
 						JDialog dialog = new JDialog();
 						dialog.setAlwaysOnTop(true);    
-						JOptionPane.showMessageDialog(dialog, label, "THE PRINCESS NEEDS YOU!", JOptionPane.WARNING_MESSAGE, new ImageIcon("C:\\Users\\Domantas\\Documents\\GitHub\\CalendarNoteReminder\\src\\main\\resources\\images/QGo5isT.gif"));
+						JOptionPane.showMessageDialog(dialog, label, "!!!REMINDER!!!", JOptionPane.WARNING_MESSAGE, new ImageIcon("/resources/images/QGo5isT.gif"));
 					}
 				}
 				DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
